@@ -1,0 +1,53 @@
+import java.util.ArrayList;
+
+public class Monticulo {
+
+	private ArrayList<Integer> monticulo;
+	private int tamanio;
+
+	public Monticulo(ArrayList<Integer> monticulo) {
+		this.monticulo = new ArrayList<Integer>();
+		this.monticulo = monticulo;
+		this.tamanio = monticulo.size();
+
+	}
+
+	public int obtenerRaiz() {
+		return this.monticulo.get(0);
+	}
+
+	public void mostrarMonticulo() {
+		System.out.println(this.monticulo);
+	}
+
+	public void insertarNodo(int numero) {
+		if (monticulo.isEmpty()) {
+			monticulo.add(1, numero);
+		} else {
+			monticulo.add(numero);
+		}
+
+		acomodarNodo();
+
+	}
+
+	// acomodar nodo agarra el ultimo elemento y lo compara con el de arriba e
+	// intercambia
+	private void acomodarNodo() {
+		int posUltimo = monticulo.size() - 1;
+		int posPadre = posUltimo / 2;
+		int aux;
+		
+		while (posUltimo == 1 || monticulo.get(posPadre) < monticulo.get(posUltimo)) {
+			// intercambio
+			aux = monticulo.get(posPadre);
+			monticulo.add(posPadre, monticulo.get(posUltimo));
+			monticulo.add(posUltimo, aux);
+			
+			// calculo las posiciones
+			posUltimo = posPadre/2;
+			posPadre = posUltimo / 2;
+			
+		}
+
+	}
